@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Blogs:</div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Blogs name</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @user_blogs.each do |user_blog| %>
+        <tr>
+          <td><%= user_blog.user_id %></td>
+          <td><%= user_blog.name %></td>
+          <td><%= link_to 'Show', user_blog %></td>
+          <% if user_blog.user == current_user %>
+
+            <td><%= link_to 'Edit', edit_user_blog_path(user_blog) %></td>
+            <td><%= link_to 'Destroy', user_blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<br>
+
+
+  <div class="panel-footer"><%= link_to 'New User Blog', new_user_blog_path %> </div>
+</div>

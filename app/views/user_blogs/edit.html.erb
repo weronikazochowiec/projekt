@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Edit your blog</div>
+  <div class="panel-body">
+
+<%= render 'form', user_blog: @user_blog %>
+
+
+
+  </div>
+  <div class="panel-footer"> <%= link_to 'Show', @user_blog %> |
+    <%= link_to 'Back', user_blogs_path %></div>
+</div>

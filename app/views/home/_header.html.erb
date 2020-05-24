@@ -20,7 +20,10 @@
         <li>
           <%= link_to 'Authors', home_authors_path%>
         </li>
+
+        <li> <%= link_to 'Blogs', user_blogs_path %></li>
         <%if user_signed_in? %>
+          <li> <%= link_to 'New Blog', new_user_blog_path %></li>
 
           <li> <%= link_to 'Edit profile', edit_user_registration_path %></li>
 

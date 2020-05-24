@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+<p>
+  <strong>User:</strong>
+  <%= @user_blog.user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user_blog.name %>
+</p>
+
+
+  </div>
+  <div class="panel-footer">
+    <% if @user_blog.user == current_user %>
+      <%= link_to 'Edit', edit_user_blog_path(@user_blog) %>
+    <%end %>
+
+    <%= link_to 'Back', user_blogs_path %>
+  </div>
+</div>
