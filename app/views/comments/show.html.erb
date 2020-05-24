@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+<p>
+  <strong>User:</strong>
+  <%= @comment.user_id %>
+</p>
+
+<p>
+  <strong>Post:</strong>
+  <%= @comment.post_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @comment.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @comment.content %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @comment.date %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @comment.time %>
+</p>
+
+
+
+  </div>
+  <div class="panel-footer">
+    <% if @comment.user == current_user %>
+      <%= link_to 'Edit', edit_comment_path(@comment) %>
+    <%end %>
+
+    <%= link_to 'Back', comment_path %>
+  </div>
+</div>
