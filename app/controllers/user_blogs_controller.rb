@@ -75,7 +75,7 @@ class UserBlogsController < ApplicationController
     end
 
   def correct_user
-    @user_blog = current_user.user_blog.find_by(id: params[:id])
-    redirect_to user_blogs_path_path, notice: "You don't have permission to edit this blog" if @user_blog.nil?
+    @user_blog = current_user.user_blogs.find_by(id: params[:id])
+    redirect_to user_blogs_path, notice: "You don't have permission to edit this blog" if @user_blog.nil?
   end
 end
