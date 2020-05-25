@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :locations
   resources :comments
   resources :posts
   resources :user_blogs
