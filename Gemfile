@@ -58,6 +58,7 @@ gem 'sassc-rails', '>= 2.1.0'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'rails_admin'
 gem 'paperclip', '~> 6.1'
+gem 'aws-sdk', '~> 3.0', '>= 3.0.1'
 
 
 group :development, :test do
