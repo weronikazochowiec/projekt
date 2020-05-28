@@ -10,12 +10,27 @@
   <strong>Name:</strong>
   <%= @user_blog.name %>
 </p>
+    <h2>Post:</h2>
+    <% @user_blog.posts.each do |post| %>
+      <td><%= post.user_blog_id %></td>
+      <td><%= image_tag post.image.url(:thumb) %></td>
+      <td><%= post.title %></td>
+      <td><%= post.content %></td>
+      <td><%= post.date %></td>
+      <td><%= post.time %></td>
+      <td><%= link_to 'Show', post %></td>
+      <% if @user_blog.user == current_user %>
+      <td><%= link_to 'Edit', edit_post_path(post) %></td>
+      <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end %>
+    <% end %>
 
 
   </div>
   <div class="panel-footer">
     <% if @user_blog.user == current_user %>
       <%= link_to 'Edit', edit_user_blog_path(@user_blog) %>
+      <%= link_to 'New post', new_user_blog_post_path(@user_blog) %>
     <%end %>
 
     <%= link_to 'Back', user_blogs_path %>

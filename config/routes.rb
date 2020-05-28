@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :locations
   resources :comments
   resources :posts
-  resources :user_blogs
+  resources :user_blogs do
+    resources :posts
+  end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   root 'home#index'

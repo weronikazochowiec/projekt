@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -16,7 +14,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = current_user.posts.build
+    @post = Post.new(user_blog_id: params[:user_blog_id])
   end
 
   # GET /posts/1/edit
@@ -26,7 +24,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = current_user.posts.build(post_params)
+    @post = Post.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -71,10 +69,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:user_blog_id, :title, :content, :date, :time, :image)
+      params.require(:post).permit(:user_blog_id, :location_id, :title, :content, :date, :time, :image)
     end
-  def correct_user
-    @post = current_user.posts.find_by(id: params[:id])
-    redirect_to posts_path, notice: "You don't have permission to edit this post" if @post.nil?
-  end
+
 end
