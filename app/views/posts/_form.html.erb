@@ -14,11 +14,21 @@
 
   <div class="form-group">
     <%= form.label :location_id %>
-    <%= form.text_field :location_id, class: 'form-control' %>
+    <%= form.collection_select :location_id, Location.all, :id, :city,  class: "form-control"  %>
   </div>
 
-  <div class="form-group"></div>
-    <%= form.label :image, "Obraz" %>
+  <div class="form-group">
+
+    <%= form.label "Category" %>
+    <% Category.all.each do |cat| %>
+      <%= check_box_tag "post[category_ids][]", cat.id, @post.category_ids.include?(cat.id)%>
+      <%= cat.name %>
+    <% end %>
+
+  </div>
+
+  <div class="form-group">
+    <%= form.label :image, "Image" %>
     <%= form.file_field :image, class: "form-control" %>
   </div>
 
@@ -32,15 +42,7 @@
     <%= form.text_area :content, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :date %>
-    <%= form.date_select :date, class: 'form-control' %>
-  </div>
 
-  <div class="form-group">
-    <%= form.label :time %>
-    <%= form.time_select :time, class: 'form-control' %>
-  </div>
 
   <div class="form-group">
     <%= form.submit %>

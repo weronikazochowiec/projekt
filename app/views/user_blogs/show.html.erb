@@ -12,12 +12,11 @@
 </p>
     <h2>Post:</h2>
     <% @user_blog.posts.each do |post| %>
-      <td><%= post.user_blog_id %></td>
-      <td><%= image_tag post.image.url(:thumb) %></td>
-      <td><%= post.title %></td>
-      <td><%= post.content %></td>
-      <td><%= post.date %></td>
-      <td><%= post.time %></td>
+      <%= post.user_blog_id %>
+      <%= image_tag post.image.url(:medium) %>
+      <%= post.title %>
+      <%= post.content %>
+      <%= post.updated_at %>
       <td><%= link_to 'Show', post %></td>
       <% if @user_blog.user == current_user %>
       <td><%= link_to 'Edit', edit_post_path(post) %></td>

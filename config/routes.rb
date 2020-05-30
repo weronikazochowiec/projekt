@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :post_categories
-  resources :categories
+  resources :categories do
+    resources :posts
+  end
   resources :locations
   resources :comments
   resources :posts
