@@ -22,10 +22,25 @@
 
 </p>
 
+    <h2>Comments:</h2>
+    <% @post.comments.each do |comment| %>
+      <%= comment.post_id %>
+      <%= comment.title %>
+      <%= comment.content %>
+      <%= comment.updated_at %>
+      <td><%= link_to 'Show', comment %></td>
+      <% if comment.user == current_user %>
+        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <%end %>
+    <% end %>
+
   </div>
     <div class="panel-footer">
 
-      <%= link_to 'Edit', edit_post_path(@post) %>
+      <% if user_signed_in? %>
+        <%= link_to "Add Comment", new_post_comment_path(post_id: @post.id ) %>
+      <%end %>
 
       <%= link_to 'Back', posts_path %>
     </div>

@@ -21,15 +21,7 @@
   <%= @comment.content %>
 </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @comment.date %>
-</p>
 
-<p>
-  <strong>Time:</strong>
-  <%= @comment.time %>
-</p>
 
 
 
@@ -39,6 +31,6 @@
       <%= link_to 'Edit', edit_comment_path(@comment) %>
     <%end %>
 
-    <%= link_to 'Back', comment_path %>
+    <%= link_to 'Back', post_comment_path %>
   </div>
 </div>

@@ -10,7 +10,7 @@
   <strong>Name:</strong>
   <%= @user_blog.name %>
 </p>
-    <h2>Post:</h2>
+    <h2>Posts:</h2>
     <% @user_blog.posts.each do |post| %>
       <%= post.user_blog_id %>
       <%= image_tag post.image.url(:medium) %>

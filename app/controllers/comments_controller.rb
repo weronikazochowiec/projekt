@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment =  current_user.comments.build
+    @comment =  current_user.comments.build(post_id: params[:post_id])
   end
 
   # GET /comments/1/edit
@@ -71,7 +71,7 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:user_id, :post_id, :title, :content, :date, :time)
+      params.require(:comment).permit(:post_id, :title, :content, :date, :time)
     end
 
   def correct_user
