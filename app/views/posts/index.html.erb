@@ -3,6 +3,12 @@
 <div class="panel panel-default">
   <div class="panel-heading">Posts:</div>
 
+  <%= form_tag(posts_path, method: "get") do %>
+    <%= select_tag "category_ids", options_from_collection_for_select(Category.all, :id, :name),
+                   prompt: "Select Category", multiple: true %>
+    <%= submit_tag "Submit" %>
+  <% end %>
+
 <table class="table">
   <thead>
     <tr>
