@@ -6,8 +6,23 @@ class PostsController < ApplicationController
   def index
     if params[:category_ids]
       @posts = Post.joins(:categories).where('categories.id' =>  params[:category_ids])
+      @posts = @posts.order(created_at: :DESC).uniq
+
+    elsif params[:location_id]
+      @posts = Post.where( location_id: params[:location_id])
+      @posts = @posts.order(created_at: :DESC).uniq
+
+    elsif params[:year]
+      @posts= Post.where("YEAR(created_at) = ?", year)
+      @posts = @posts.order(created_at: :DESC).uniq
+
+    elsif params[:keyword]
+      @posts = Post.where('true')
+      @posts = @posts.where('lower (title) ILIKE' => "%#{params[:keywords]}%")
+      @posts = @posts.where('lower (content) ILIKE' => "%#{params[:keywords]}%")
+      @posts = @posts.order(created_at: :DESC).uniq
     else
-      @posts = Post.all
+      @posts = Post.all.order(created_at: :desc)
     end
   end
 
