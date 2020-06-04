@@ -4,7 +4,9 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    if params[:category_ids]
+    if params[:category_ids] && params[:location_id]
+      @posts=Post.joins(:categories).where("categories.id = ? AND location_id = ?", params[:category_ids], params[:location_id])
+    elsif params[:category_ids]
       @posts = Post.joins(:categories).where('categories.id' =>  params[:category_ids])
       @posts = @posts.order(created_at: :DESC).uniq
 
@@ -18,8 +20,7 @@ class PostsController < ApplicationController
 
     elsif params[:keyword]
       @posts = Post.where('true')
-      @posts = @posts.where('lower (title) ILIKE' => "%#{params[:keywords]}%")
-      @posts = @posts.where('lower (content) ILIKE' => "%#{params[:keywords]}%")
+      @posts = @posts.where('lower (title) like', "%#{params[:keywords]}%")
       @posts = @posts.order(created_at: :DESC).uniq
     else
       @posts = Post.all.order(created_at: :desc)
