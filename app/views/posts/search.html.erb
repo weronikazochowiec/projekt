@@ -22,7 +22,7 @@
     <% @posts.each do |post| %>
       <div class="box">
         <div class="panel panel-default">
-          <div class="panel-heading"><center><h3><%= link_to post.title, user_blog_post_path(user_blog_id: post.user_blog_id, id: post.id) %></h3></center></div> <br/>
+          <div class="panel-heading"><center><h3><%= link_to post.title, post %></h3></center></div> <br/>
           <p><%= post.created_at %> <br/></p>
           <%= image_tag post.image.url(:thumb) %> <br/>
         </div>
@@ -33,5 +33,3 @@
 
   </div>
 </div>
-<%= will_paginate @posts %>
-

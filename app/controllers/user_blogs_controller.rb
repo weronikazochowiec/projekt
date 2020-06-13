@@ -6,17 +6,23 @@ class UserBlogsController < ApplicationController
   # GET /user_blogs
   # GET /user_blogs.json
   def index
-    @user_blogs = UserBlog.all
+    @user_blogs = UserBlog.all.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
   end
 
   # GET /user_blogs/1
   # GET /user_blogs/1.json
   def show
+    @user_blog = UserBlog.find(params[:id])
+    @user= @user_blog.user
   end
 
   # GET /user_blogs/new
   def new
     @user_blog = current_user.user_blogs.build
+  end
+
+  def get_user_id
+    return user_blog.user_id
   end
 
   # GET /user_blogs/1/edit
@@ -58,7 +64,7 @@ class UserBlogsController < ApplicationController
   def destroy
     @user_blog.destroy
     respond_to do |format|
-      format.html { redirect_to user_blogs_url, notice: 'User blog was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'User blog was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -76,6 +82,6 @@ class UserBlogsController < ApplicationController
 
   def correct_user
     @user_blog = current_user.user_blogs.find_by(id: params[:id])
-    redirect_to user_blogs_path, notice: "You don't have permission to edit this blog" if @user_blog.nil?
+    redirect_to root_path, notice: "You don't have permission to edit this blog" if @user_blog.nil?
   end
 end
