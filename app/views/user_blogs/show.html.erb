@@ -3,7 +3,7 @@
 
 
     <div class="page-header">
-      <h1> <%= @user_blog.name %> <small>created by user <%@user.email %></small></h1>
+      <h1> <%= @user_blog.name %> <small>created by <%=@user_blog.user.name %></small></h1>
     </div>
 
     <% if @user_blog.user == current_user %>
@@ -19,8 +19,10 @@
           <div class="box">
             <div class="panel panel-default">
               <div class="panel-heading"><center><h3><%= link_to post.title, user_blog_post_path(user_blog_id: post.user_blog_id, id: post.id) %></h3></center></div> <br/>
-              <p><%= post.created_at %> <br/></p>
-              <%= image_tag post.image.url(:thumb) %> <br/>
+              <div class="panel-body">
+                <h5><%= post.created_at %> <br/></h5>
+                <%= image_tag post.image.url(:thumb),:style => "border: 2px solid #2F3538" %> <br/>
+              </div>
             </div>
 
 
@@ -28,7 +30,7 @@
       <% if @user_blog.user == current_user %>
             <div class="panel-footer">
               <div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_post_path(post) %> <br/></button>
+                <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_user_blog_post_path(user_blog_id: post.user_blog_id, id: post.id) %> <br/></button>
                 <button type="button" class="btn btn-default"> <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></button>
               </div>
 

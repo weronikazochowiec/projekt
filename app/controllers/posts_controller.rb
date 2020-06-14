@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :post, only: [:access]
   before_action :authenticate_before_show, only: [:show]
 
 
@@ -34,12 +33,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def blog_owner
-    @post = Post.find(params[:id])
-    blog_id=@post.user_blog_id
-    @user_blog= UserBlog.find(blog_id)
-    return @user_blog.user
-  end
+
 
   def authenticate_before_show
     return if post.public?
@@ -47,19 +41,6 @@ class PostsController < ApplicationController
     authenticate_or_request_with_http_basic(realm) do |username, password|
       post.authenticate(password)
     end
-  end
-
-  def access
-
-    if post.password_digest.nil? || @post.authenticate(params[:password])
-      redirect_to action: :show
-    else
-      # Render access.html.erb with the password prompt
-    end
-  end
-
-  def new_access
-
   end
 
   # GET /posts/1
@@ -85,7 +66,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to user_blog_post_path(user_blog_id: @post.user_blog_id, id:@post.id), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -99,7 +80,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to user_blog_post_path(user_blog_id: @post.user_blog_id, id:@post.id), notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
@@ -111,9 +92,14 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    @post = Post.find(params[:id])
+    @comment = @post.comments.where(post_id: @post.id)
+    @comment.each do |comment|
+      comment.destroy
+    end
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to user_blog_path( id: @post.user_blog_id), notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

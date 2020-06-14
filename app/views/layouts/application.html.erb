@@ -16,10 +16,17 @@
 
 
     <div class = "container">
+      <% if user_signed_in? %>
+        <div class = "jumbotron">
+          <h1>Welcome <%= current_user.name %></h1>
+          <p>.. and create your blog with us or check blogs other users</p>
+        </div>
+      <%else %>
       <div class = "jumbotron">
         <h1>Welcome in our site..</h1>
         <p>.. and create your blog with us or check blogs other users</p>
       </div>
+      <%end %>
       <% flash.each do |name, msg| %>
         <%= content_tag(:div, msg, class: "alert alert-info") %>
       <% end %>

@@ -23,8 +23,26 @@
       <div class="box">
         <div class="panel panel-default">
           <div class="panel-heading"><center><h3><%= link_to post.title, user_blog_post_path(user_blog_id: post.user_blog_id, id: post.id) %></h3></center></div> <br/>
-          <p><%= post.created_at %> <br/></p>
-          <%= image_tag post.image.url(:thumb) %> <br/>
+          <div class="panel-body">
+            <h5><%= post.created_at %> <br/></h5>
+
+            <%= image_tag post.image.url(:thumb), :style => "border: 2px solid #2F3538"  %> <br/>
+            <h5> Created by <%= post.user_blog.user.name %></h5>
+          </div>
+
+            <div class="panel-footer">
+              <div class="btn-group" role="group" aria-label="...">
+                <% if post.user_blog.user == current_user %>
+
+                  <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_user_blog_post_path(user_blog_id: post.user_blog_id, id: post.id) %> <br/></button>
+                  <button type="button" class="btn btn-default"> <%= link_to 'Destroy', user_blog_post_path(user_blog_id: post.user_blog_id, id: post.id), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                <%end %>
+
+
+              <button type="button" class="btn btn-default"><%= link_to 'Check blog', user_blog_path(id: post.user_blog_id) %> <br/></button>
+              </div>
+            </div>
+
         </div>
 
       </div>

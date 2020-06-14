@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
 
-
-  resources :comments
-
-  get "search" => 'posts#search'
+  get "your" => 'user_blogs#your'
   resources :posts do
     resources :comments
   end
+
+  resources :comments
 
   resources :user_blogs do
     resources :posts do
@@ -14,9 +13,7 @@ Rails.application.routes.draw do
     end
   end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users do
-    resources :user_blogs
-  end
+  devise_for :users
   root 'posts#index'
 
   get 'home/authors'
