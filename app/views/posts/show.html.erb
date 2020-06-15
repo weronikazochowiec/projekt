@@ -3,7 +3,7 @@
 
         <div class="thumbnail">
           <br/>
-          <%= image_tag @post.image.url(:medium), :style => "border: 4px solid #1EC9E8"  %></center> <br/>
+          <%= image_tag @post.image.url(:medium), :style => "border: 4px solid #2398AB"  %></center> <br/>
           <div class="caption">
             <div class="page-header">
               <h1>  <%= @post.title %> <small> <%= @post.created_at %></small></h1>
@@ -19,12 +19,12 @@
 
 
                   <%= link_to 'Edit', edit_user_blog_post_path(user_blog_id: @post.user_blog_id, id: @post.id), class:"btn btn-primary" %>
-                  <%= link_to 'Destroy', user_blog_post_path(user_blog_id: @post.user_blog_id, id: @post.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                  <%= link_to 'Destroy', user_blog_post_path(user_blog_id: @post.user_blog_id, id: @post.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
               
 
 
             <%end %>
-            <%= link_to 'Back', user_blog_path(id:@post.user_blog_id), class: "btn btn-warning" %>
+            <%= link_to 'Back', user_blog_path(id:@post.user_blog_id), class: "btn btn-primary" %>
           </div>
 
         </div>

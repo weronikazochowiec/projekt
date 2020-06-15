@@ -7,8 +7,8 @@
     </div>
 
     <% if @user_blog.user == current_user %>
-      <%= link_to 'Change blog name', edit_user_blog_path(@user_blog), class: "btn btn-danger" %>
-      <%= link_to 'New post', new_user_blog_post_path(@user_blog), class: "btn btn-info" %>
+      <%= link_to 'Change blog name', edit_user_blog_path(@user_blog),  class: 'btn btn-primary'%>
+      <%= link_to 'New post', new_user_blog_post_path(@user_blog),  class: 'btn btn-primary'%>
     <%end %>
 
 
@@ -30,8 +30,8 @@
       <% if @user_blog.user == current_user %>
             <div class="panel-footer">
               <div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_user_blog_post_path(user_blog_id: post.user_blog_id, id: post.id) %> <br/></button>
-                <button type="button" class="btn btn-default"> <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                <%= link_to 'Edit', edit_user_blog_post_path(user_blog_id: post.user_blog_id, id: post.id), class: 'btn btn-primary' %>
+                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' },  class: 'btn btn-primary' %>
               </div>
 
             </div>
@@ -46,6 +46,6 @@
   <div class="panel-footer">
 
 
-    <%= link_to 'Back', root_path %>
+    <%= link_to 'Back', root_path,  class: 'btn btn-primary' %>
   </div>
 </div>

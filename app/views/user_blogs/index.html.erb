@@ -14,8 +14,8 @@
 
           <% if user_blog.user == current_user %>
             <div class="btn-group" role="group" aria-label="...">
-              <button type="button" class="btn btn-default"> <%= link_to 'Edit', edit_user_blog_path(user_blog) %> </button>
-              <button type="button" class="btn btn-default"> <%= link_to 'Destroy', user_blog, method: :delete, data: { confirm: 'Are you sure?' } %> </button>
+             <%= link_to 'Edit', edit_user_blog_path(user_blog),  class: 'btn btn-primary' %>
+              <%= link_to 'Destroy', user_blog, method: :delete, data: { confirm: 'Are you sure?' },  class: 'btn btn-primary' %>
             </div>
 
 
