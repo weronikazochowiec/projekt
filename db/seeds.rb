@@ -9,4 +9,4 @@ categories = Category.create ([{name: 'Animals'}, {name: 'Lifestyle'}, {name: 'H
 
 locations = Location.create ([{city: 'Warsaw'}, {city: 'Krakow'}, {city: 'Bialystok'}, {city: 'Paris'}, {city: 'London'}, {city: 'New York'}, {city: 'Rome'}, {city:'Lublin'}, {city: 'Brussels'}])
 
-users = User.create ([{email: 'blogowotest@gmail.com', encrypted_password:'q1w2e3r4', name: 'admin', admin: true}])
+User.create(email: 'blogowotest@gmail.com', password:'q1w2e3r4', name: 'admin', admin: true)
